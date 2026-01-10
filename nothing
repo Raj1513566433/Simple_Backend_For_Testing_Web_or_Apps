@@ -1,0 +1,96 @@
+## 🚀 **POSTMAN TESTING:**
+
+### **1. SIGNUP**
+```
+POST http://localhost:5000/auth/signup
+
+Body (JSON):
+{
+  "email": "test@gmail.com",
+  "password": "123456"
+}
+
+Response:
+{
+  "message": "Signup successful. You can now login.",
+  "user": {
+    "id": "...",
+    "email": "test@gmail.com"
+  }
+}
+```
+
+### **2. LOGIN**
+```
+POST http://localhost:5000/auth/login
+
+Body (JSON):
+{
+  "email": "test@gmail.com",
+  "password": "123456"
+}
+
+Response:
+{
+  "message": "Login successful",
+  "accessToken": "eyJhbGc...",
+  "refreshToken": "eyJhbGc...",
+  "user": {
+    "id": "...",
+    "email": "test@gmail.com"
+  }
+}
+```
+
+### **3. CHANGE PASSWORD** (Login er por)
+```
+POST http://localhost:5000/auth/change-password
+
+Headers:
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+Body (JSON):
+{
+  "currentPassword": "123456",
+  "newPassword": "newpass123"
+}
+```
+
+### **4. FORGOT PASSWORD**
+```
+POST http://localhost:5000/auth/forgot-password
+
+Body (JSON):
+{
+  "email": "test@gmail.com"
+}
+
+Response:
+{
+  "message": "Password reset token generated successfully",
+  "resetToken": "abc123def456..."
+}
+```
+
+### **5. RESET PASSWORD**
+```
+POST http://localhost:5000/auth/reset-password
+
+Body (JSON):
+{
+  "resetToken": "abc123def456...",
+  "newPassword": "newpassword123"
+}
+```
+
+### **6. LOGOUT**
+```
+POST http://localhost:5000/auth/logout
+
+Headers:
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+Body (JSON):
+{
+  "refreshToken": "YOUR_REFRESH_TOKEN"
+}
